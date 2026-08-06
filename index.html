@@ -149,6 +149,59 @@
     #reviews .reviews-subtitle{max-width:none;margin:12px 0 0;color:var(--muted);font-size:16px;line-height:1.5;font-weight:500}
     .price-card .price.price-contract{font-size:16px;line-height:1.45;letter-spacing:0}
 
+    /* Revision 6: one continuous responsive hero composition. */
+    .trust-title-break{display:none!important}
+    @media (min-width:701px){
+      .trust-title{max-width:none!important;white-space:nowrap!important;font-size:clamp(23px,3vw,42px)!important}
+    }
+    @media (min-width:581px) and (max-width:1000px){
+      .hero{position:relative!important;min-height:clamp(570px,72vw,650px)!important;background:#fff!important}
+      .hero-bg-image{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:76% center!important}
+      .hero:before{content:''!important;display:block!important;position:absolute!important;inset:0!important;z-index:1!important;height:auto!important;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.99) 35%,rgba(255,255,255,.91) 53%,rgba(255,255,255,.48) 72%,rgba(255,255,255,.08) 100%)!important}
+      .hero-grid{position:relative!important;z-index:2!important;display:grid!important;grid-template-columns:1fr!important;min-height:clamp(570px,72vw,650px)!important}
+      .hero-copy{width:60%!important;max-width:590px!important;align-self:center!important;padding:50px 0 58px!important}
+      .hero-art{display:none!important}
+      .hero h1{font-size:clamp(40px,5.5vw,56px)!important;margin:13px 0 18px!important}
+      .hero-offer{font-size:clamp(14px,1.75vw,17px)!important;line-height:1.5!important;margin-bottom:22px!important}
+      .hero .bonus-note{margin-top:17px!important;padding:12px 14px!important;font-size:12px!important;background:rgba(249,253,250,.9)!important;backdrop-filter:blur(4px)}
+      .hero .wave{display:block!important}
+    }
+    @media (max-width:580px){
+      .hero{position:relative!important;min-height:clamp(680px,190vw,760px)!important;background:#fff!important}
+      .hero-bg-image{display:block!important;position:absolute!important;z-index:0!important;left:-16%!important;right:auto!important;top:auto!important;bottom:-40px!important;width:120%!important;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center bottom!important}
+      .hero:before{content:''!important;display:block!important;position:absolute!important;inset:0!important;z-index:1!important;height:auto!important;background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.995) 48%,rgba(255,255,255,.94) 61%,rgba(255,255,255,.38) 79%,rgba(255,255,255,.05) 100%)!important}
+      .hero-grid{position:relative!important;z-index:2!important;display:grid!important;grid-template-columns:1fr!important;min-height:clamp(680px,190vw,760px)!important;align-items:start!important}
+      .hero-copy{width:100%!important;max-width:none!important;padding:34px 0 250px!important}
+      .hero-art{display:none!important}
+      .hero h1{font-size:clamp(34px,10vw,42px)!important;line-height:1.04!important;margin:11px 0 15px!important}
+      .hero-offer{max-width:100%!important;font-size:clamp(13px,3.45vw,15px)!important;line-height:1.45!important;margin-bottom:17px!important}
+      .hero .cta-row{gap:8px!important}
+      .hero .btn{padding:11px 13px!important;font-size:11px!important}
+      .hero .bonus-note{margin-top:13px!important;padding:10px 12px!important;gap:9px!important;font-size:11px!important;line-height:1.4!important;background:rgba(249,253,250,.92)!important;backdrop-filter:blur(4px)}
+      .hero .bonus-note .bonus-icon{width:23px!important;height:23px!important}
+      .hero .wave{display:none!important}
+      .trust-title{white-space:normal!important}
+    }
+    @media (max-width:430px){
+      .hero-bg-image{left:-27%!important;bottom:-60px!important;width:145%!important}
+    }
+    /* Revision 7: a compact text-only hero on phones. */
+    @media (max-width:580px){
+      .hero{min-height:0!important}
+      .hero-bg-image,.hero:before,.hero-art{display:none!important}
+      .hero-grid{min-height:0!important}
+      .hero-copy{padding:34px 0 38px!important}
+    }
+    /* Revision 8: matching typography for reviews and FAQ headings. */
+    #reviews .section-head h2,#faq .section-head h2{max-width:none!important;font-size:clamp(28px,3.1vw,42px)!important}
+    @media (min-width:901px){
+      #reviews .section-head h2{white-space:nowrap!important}
+      #faq .section-head h2{white-space:normal!important;text-wrap:balance}
+    }
+    @media (max-width:900px){
+      #reviews .section-head h2,#faq .section-head h2{white-space:normal!important}
+    }
+
   </style>
 </head>
 <body>
@@ -157,7 +210,7 @@
   <main id="top">
     <section class="hero"><img class="hero-bg-image" src="hero-svetlana-aquaculture.webp" alt=""><div class="shell hero-grid"><div class="hero-copy"><div class="eyebrow">Ихтиопатология · биобезопасность · аналитика</div><h1>Здоровая <em>аквакультура</em></h1><p class="hero-offer">Экспертная помощь рыбоводным хозяйствам от ихтиопатолога Светланы Рудаковой: аудит, разработка и внедрение системы биобезопасности, онлайн-сопровождение и анализ производственных данных с использованием искусственного интеллекта.</p><div class="cta-row"><a class="btn primary" href="tel:+79619605749">Записаться на бесплатную консультацию <span class="arrow">→</span></a><a class="btn outline" href="https://t.me/svrd_71">Telegram: @svrd_71</a></div><div class="bonus-note"><span class="bonus-icon">✓</span><span><b>Бонус после консультации:</b> чек-лист «Как поддерживать эффективность работы вашего дезковрика».</span></div></div><div class="hero-art" aria-label="Светлана Рудакова"><div class="hero-media"><img src="hero-svetlana-aquaculture.webp" alt="Светлана Рудакова, ихтиопатолог-вирусолог"><span class="hero-media-label">Светлана Рудакова · ихтиопатолог</span></div></div></div><div class="wave"></div></section>
 
-    <section class="section white" id="trust"><div class="shell"><div class="section-head"><div><div class="eyebrow">Почему выбирают нас</div><h2 class="trust-title">Почему хозяйства доверяют нам здоровье<br class="trust-title-break"> своей рыбы</h2></div></div><div class="trust-grid"><article class="trust-card"><span class="trust-num">01</span><h3>Снижение риска массовой гибели рыбы</h3><p>Более 30 лет практического опыта в ихтиопатологии помогают своевременно выявлять риски и принимать решения.</p></article><article class="trust-card"><span class="trust-num">02</span><h3>Долгосрочное сопровождение до результата</h3><p>Решения учитывают источник воды, технологию выращивания, историю заболеваний и условия содержания именно вашего хозяйства.</p></article><article class="trust-card"><span class="trust-num">03</span><h3>Полная конфиденциальность</h3><p>Условия конфиденциальности закрепляются в договоре.</p></article><article class="trust-card"><span class="trust-num">04</span><h3>Оперативная экспертная поддержка</h3><p>Консультация и рекомендации — в течение нескольких часов после получения вводных данных.</p></article><article class="trust-card"><span class="trust-num">05</span><h3>Экспертные решения с использованием ИИ</h3><p>Инструменты искусственного интеллекта помогают быстрее анализировать вводные данные и историю наблюдений.</p></article></div></div></section>
+    <section class="section white" id="trust"><div class="shell"><div class="section-head"><div><div class="eyebrow">Почему выбирают нас</div><h2 class="trust-title">Почему хозяйства доверяют нам здоровье своей рыбы</h2></div></div><div class="trust-grid"><article class="trust-card"><span class="trust-num">01</span><h3>Снижение риска массовой гибели рыбы</h3><p>Более 30 лет практического опыта в ихтиопатологии помогают своевременно выявлять риски и принимать решения.</p></article><article class="trust-card"><span class="trust-num">02</span><h3>Долгосрочное сопровождение до результата</h3><p>Решения учитывают источник воды, технологию выращивания, историю заболеваний и условия содержания именно вашего хозяйства.</p></article><article class="trust-card"><span class="trust-num">03</span><h3>Полная конфиденциальность</h3><p>Условия конфиденциальности закрепляются в договоре.</p></article><article class="trust-card"><span class="trust-num">04</span><h3>Оперативная экспертная поддержка</h3><p>Консультация и рекомендации — в течение нескольких часов после получения вводных данных.</p></article><article class="trust-card"><span class="trust-num">05</span><h3>Экспертные решения с использованием ИИ</h3><p>Инструменты искусственного интеллекта помогают быстрее анализировать вводные данные и историю наблюдений.</p></article></div></div></section>
 
     
 
