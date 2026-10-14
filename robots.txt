@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zdorovaya-akvakultura.ru/sitemap.xml
