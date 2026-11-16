@@ -9,7 +9,7 @@
   dialog.innerHTML = `<div class="request-modal-inner">
     <button class="request-modal-close" type="button" aria-label="Закрыть форму">×</button>
     <h2 id="request-modal-title">Оставить заявку</h2>
-    <p class="request-modal-intro">Укажите ФИО и телефон — Светлана Рудакова свяжется с вами.</p>
+    <p class="request-modal-intro">Укажите имя и телефон — Светлана Рудакова свяжется с вами.</p>
     <iframe title="Форма заявки" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     <div class="request-modal-links"><a href="/consent/" target="_blank" rel="noopener">Текст согласия на обработку персональных данных</a><a href="/privacy-policy/" target="_blank" rel="noopener">Политика обработки персональных данных</a><a href="${formUrl}" target="_blank" rel="noopener">Открыть форму отдельно</a></div>
   </div>`;
