@@ -1,0 +1,15 @@
+.services-menu{position:relative;display:inline-flex;align-items:center}
+.services-menu__button{position:relative;display:inline-flex;align-items:center;gap:6px;padding:0;border:0;background:transparent;color:inherit;font:inherit;font-weight:inherit;line-height:inherit;cursor:pointer}
+.services-menu__button:after{content:"";width:6px;height:6px;margin-top:-3px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .2s}
+.services-menu__button:before{content:"";position:absolute;left:0;right:14px;bottom:-8px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+.services-menu:hover .services-menu__button:before,.services-menu:focus-within .services-menu__button:before,.services-menu.is-active .services-menu__button:before{transform:scaleX(1)}
+.services-menu.is-open .services-menu__button:after,.services-menu:hover .services-menu__button:after,.services-menu:focus-within .services-menu__button:after{transform:rotate(225deg);margin-top:3px}
+.services-menu__panel{position:absolute;z-index:40;top:calc(100% + 18px);left:-16px;width:290px;padding:8px;border:1px solid #d5e3e8;border-radius:12px;background:#fff;box-shadow:0 16px 32px rgba(8,45,71,.16);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s}
+.services-menu:hover .services-menu__panel,.services-menu:focus-within .services-menu__panel,.services-menu.is-open .services-menu__panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.navlinks .services-menu__panel a{display:block;padding:10px 12px;border-radius:8px;color:var(--navy);line-height:1.28;white-space:normal;transition:background .18s,color .18s}
+.navlinks .services-menu__panel a:after{display:none!important}
+.navlinks .services-menu__panel a:hover,.navlinks .services-menu__panel a:focus-visible{background:#edf7f4;color:#245d3e;outline:none}
+.navlinks .services-menu__panel a:first-child{margin-bottom:3px;padding-bottom:11px;border-bottom:1px solid #dce7ed;font-weight:800}
+.services-menu__button:focus-visible{outline:2px solid #72b84a;outline-offset:5px;border-radius:3px}
+@media(max-width:900px){.services-menu__panel{display:none}}
+@media(prefers-reduced-motion:reduce){.services-menu__button:after,.services-menu__button:before,.services-menu__panel{transition:none}}
