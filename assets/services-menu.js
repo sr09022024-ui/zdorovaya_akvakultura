@@ -1,23 +1,43 @@
 (() => {
-  const menuMarkup = `
-    <button class="services-menu__button" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Открыть список услуг">Услуги</button>
-    <div class="services-menu__panel">
-      <a href="/uslugi-ihtiopatologa/">Все услуги</a>
-      <a href="/konsultaciya-ihtiopatologa/">Консультация ихтиопатолога</a>
-      <a href="/audit-biobezopasnosti-rybovodnogo-hozyaystva/">Аудит биобезопасности</a>
-      <a href="/soprovozhdenie-rybovodnogo-hozyaystva/">Сопровождение хозяйства</a>
-    </div>`;
-
-  document.querySelectorAll('.navlinks > a[href="/uslugi-ihtiopatologa/"]').forEach((link) => {
-    const menu = document.createElement('div');
-    menu.className = 'services-menu';
-    menu.innerHTML = menuMarkup;
-    const currentItem = menu.querySelector(`a[href="${window.location.pathname}"]`);
-    if (currentItem) {
-      menu.classList.add('is-active');
-      currentItem.setAttribute('aria-current', 'page');
+  const navigationMenus = [
+    {
+      selector: '.navlinks > a[href="/uslugi-ihtiopatologa/"]',
+      label: 'Услуги',
+      labelForScreenReader: 'Открыть список услуг',
+      links: [
+        ['/uslugi-ihtiopatologa/', 'Все услуги'],
+        ['/konsultaciya-ihtiopatologa/', 'Консультация ихтиопатолога'],
+        ['/audit-biobezopasnosti-rybovodnogo-hozyaystva/', 'Аудит биобезопасности'],
+        ['/soprovozhdenie-rybovodnogo-hozyaystva/', 'Сопровождение хозяйства']
+      ]
+    },
+    {
+      selector: '.navlinks > a[href="/#tariffs"]',
+      label: 'Тарифы',
+      labelForScreenReader: 'Открыть список тарифов',
+      links: [
+        ['/#tariffs', 'Все тарифы'],
+        ['/tarif-standart/', 'Стандарт'],
+        ['/tarif-optimalnyj/', 'Оптимальный'],
+        ['/tarif-vip/', 'VIP']
+      ]
     }
-    link.replaceWith(menu);
+  ];
+
+  navigationMenus.forEach(({ selector, label, labelForScreenReader, links }) => {
+    document.querySelectorAll(selector).forEach((link) => {
+      const menu = document.createElement('div');
+      menu.className = 'services-menu';
+      menu.innerHTML = `
+        <button class="services-menu__button" type="button" aria-haspopup="true" aria-expanded="false" aria-label="${labelForScreenReader}">${label}</button>
+        <div class="services-menu__panel">${links.map(([href, text]) => `<a href="${href}">${text}</a>`).join('')}</div>`;
+      const currentItem = menu.querySelector(`a[href="${window.location.pathname}"]`);
+      if (currentItem) {
+        menu.classList.add('is-active');
+        currentItem.setAttribute('aria-current', 'page');
+      }
+      link.replaceWith(menu);
+    });
   });
 
   const closeMenu = (menu) => {
@@ -71,4 +91,20 @@
     const count = document.querySelector('.hero-facts span');
     if (count) count.textContent = '7 материалов';
   }
+
+  const tariffLinks = [
+    ['/tarif-standart/', 'Подробнее о тарифе «Стандарт»'],
+    ['/tarif-optimalnyj/', 'Подробнее о тарифе «Оптимальный»'],
+    ['/tarif-vip/', 'Подробнее о тарифе VIP']
+  ];
+  document.querySelectorAll('#tariffs .price-card').forEach((card, index) => {
+    const [href, label] = tariffLinks[index] || [];
+    if (!href || card.querySelector(`a[href="${href}"]`)) return;
+    const button = document.createElement('a');
+    button.className = 'btn primary';
+    button.href = href;
+    button.textContent = 'Подробнее о тарифе';
+    button.setAttribute('aria-label', label);
+    card.append(button);
+  });
 })();
