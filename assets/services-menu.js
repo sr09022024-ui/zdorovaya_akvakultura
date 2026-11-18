@@ -61,4 +61,14 @@
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') document.querySelectorAll('.services-menu.is-open').forEach(closeMenu);
   });
+
+  const blogGrid = document.querySelector('.post-grid');
+  if (blogGrid && !blogGrid.querySelector('[href="/blog/kogda-bit-trevogu-pri-othode-ryby/"]')) {
+    const card = document.createElement('article');
+    card.className = 'post-card';
+    card.innerHTML = `<a class="post-open" href="/blog/kogda-bit-trevogu-pri-othode-ryby/"><span class="post-image"><img src="/blog-fish-sampling.png" width="1672" height="941" alt="Рыба и набор для отбора диагностических проб" loading="lazy" decoding="async"></span><span class="post-copy"><span class="post-meta"><span>Диагностика</span><span>12 мин чтения</span></span><strong>Когда бить тревогу при увеличении отхода рыбы и как правильно отбирать пробы</strong><span class="post-excerpt">Когда увеличение отхода требует немедленных действий и как подготовить материал для лабораторной диагностики.</span><span class="post-more">Читать статью <b aria-hidden="true">→</b></span></span></a>`;
+    blogGrid.prepend(card);
+    const count = document.querySelector('.hero-facts span');
+    if (count) count.textContent = '7 материалов';
+  }
 })();
