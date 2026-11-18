@@ -4,6 +4,7 @@
       selector: '.navlinks > a[href="/uslugi-ihtiopatologa/"]',
       label: 'Услуги',
       labelForScreenReader: 'Открыть список услуг',
+      hasOverview: true,
       links: [
         ['/uslugi-ihtiopatologa/', 'Все услуги'],
         ['/konsultaciya-ihtiopatologa/', 'Консультация ихтиопатолога'],
@@ -16,7 +17,6 @@
       label: 'Тарифы',
       labelForScreenReader: 'Открыть список тарифов',
       links: [
-        ['/#tariffs', 'Все тарифы'],
         ['/tarif-standart/', 'Стандарт'],
         ['/tarif-optimalnyj/', 'Оптимальный'],
         ['/tarif-vip/', 'VIP']
@@ -24,10 +24,10 @@
     }
   ];
 
-  navigationMenus.forEach(({ selector, label, labelForScreenReader, links }) => {
+  navigationMenus.forEach(({ selector, label, labelForScreenReader, hasOverview, links }) => {
     document.querySelectorAll(selector).forEach((link) => {
       const menu = document.createElement('div');
-      menu.className = 'services-menu';
+      menu.className = `services-menu${hasOverview ? ' has-overview' : ''}`;
       menu.innerHTML = `
         <button class="services-menu__button" type="button" aria-haspopup="true" aria-expanded="false" aria-label="${labelForScreenReader}">${label}</button>
         <div class="services-menu__panel">${links.map(([href, text]) => `<a href="${href}">${text}</a>`).join('')}</div>`;
@@ -40,46 +40,20 @@
     });
   });
 
-  const closeMenu = (menu) => {
-    menu.classList.remove('is-open');
-    const button = menu.querySelector('.services-menu__button');
-    if (button) button.setAttribute('aria-expanded', 'false');
-  };
-
   document.querySelectorAll('.services-menu').forEach((menu) => {
     const button = menu.querySelector('.services-menu__button');
     if (!button) return;
 
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const willOpen = !menu.classList.contains('is-open');
-      document.querySelectorAll('.services-menu.is-open').forEach(closeMenu);
-      if (willOpen) {
-        menu.classList.add('is-open');
-        button.setAttribute('aria-expanded', 'true');
-      }
+    const setExpanded = (isExpanded) => button.setAttribute('aria-expanded', String(isExpanded));
+    menu.addEventListener('mouseenter', () => setExpanded(true));
+    menu.addEventListener('mouseleave', () => setExpanded(false));
+    menu.addEventListener('focusin', () => setExpanded(true));
+    menu.addEventListener('focusout', () => {
+      requestAnimationFrame(() => setExpanded(menu.contains(document.activeElement)));
     });
-
     button.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        menu.classList.add('is-open');
-        button.setAttribute('aria-expanded', 'true');
-        menu.querySelector('.services-menu__panel a')?.focus();
-      }
-      if (event.key === 'Escape') closeMenu(menu);
+      if (event.key === 'Escape') button.blur();
     });
-  });
-
-  document.addEventListener('click', (event) => {
-    document.querySelectorAll('.services-menu.is-open').forEach((menu) => {
-      if (!menu.contains(event.target)) closeMenu(menu);
-    });
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') document.querySelectorAll('.services-menu.is-open').forEach(closeMenu);
   });
 
   const blogGrid = document.querySelector('.post-grid');
