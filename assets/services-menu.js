@@ -57,13 +57,19 @@
   });
 
   const blogGrid = document.querySelector('.post-grid');
-  if (blogGrid && !blogGrid.querySelector('[href="/blog/kogda-bit-trevogu-pri-othode-ryby/"]')) {
+  const addBlogCard = (href, markup) => {
+    if (!blogGrid || blogGrid.querySelector(`[href="${href}"]`)) return;
     const card = document.createElement('article');
     card.className = 'post-card';
-    card.innerHTML = `<a class="post-open" href="/blog/kogda-bit-trevogu-pri-othode-ryby/"><span class="post-image"><img src="/blog-fish-sampling.png" width="1672" height="941" alt="Рыба и набор для отбора диагностических проб" loading="lazy" decoding="async"></span><span class="post-copy"><span class="post-meta"><span>Диагностика</span><span>12 мин чтения</span></span><strong>Когда бить тревогу при увеличении отхода рыбы и как правильно отбирать пробы</strong><span class="post-excerpt">Когда увеличение отхода требует немедленных действий и как подготовить материал для лабораторной диагностики.</span><span class="post-more">Читать статью <b aria-hidden="true">→</b></span></span></a>`;
+    card.innerHTML = markup;
     blogGrid.prepend(card);
+  };
+
+  addBlogCard('/blog/kogda-bit-trevogu-pri-othode-ryby/', `<a class="post-open" href="/blog/kogda-bit-trevogu-pri-othode-ryby/"><span class="post-image"><img src="/blog-fish-sampling.png" width="1672" height="941" alt="Рыба и набор для отбора диагностических проб" loading="lazy" decoding="async"></span><span class="post-copy"><span class="post-meta"><span>Диагностика</span><span>12 мин чтения</span></span><strong>Когда бить тревогу при увеличении отхода рыбы и как правильно отбирать пробы</strong><span class="post-excerpt">Когда увеличение отхода требует немедленных действий и как подготовить материал для лабораторной диагностики.</span><span class="post-more">Читать статью <b aria-hidden="true">→</b></span></span></a>`);
+  addBlogCard('/blog/ihnv-genogruppy-e-i-u/', `<a class="post-open" href="/blog/ihnv-genogruppy-e-i-u/"><span class="post-image"><img src="/blog-ihnv-forel.png" width="1672" height="941" alt="Экспериментальный аквариум с молодью форели, образцами и графиком наблюдений" loading="lazy" decoding="async"></span><span class="post-copy"><span class="post-meta"><span>Вирусные болезни</span><span>9 мин чтения</span></span><strong>IHNV у радужной форели: что показал эксперимент с геногруппами E и U</strong><span class="post-excerpt">Главные результаты исследования и практические выводы для контроля рисков на хозяйстве.</span><span class="post-more">Читать статью <b aria-hidden="true">→</b></span></span></a>`);
+  if (blogGrid) {
     const count = document.querySelector('.hero-facts span');
-    if (count) count.textContent = '7 материалов';
+    if (count) count.textContent = '8 материалов';
   }
 
   const tariffLinks = [
