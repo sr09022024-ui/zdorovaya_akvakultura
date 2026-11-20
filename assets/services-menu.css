@@ -1,4 +1,5 @@
 .services-menu{position:relative;display:inline-flex;align-items:center}
+.services-menu:after{content:"";position:absolute;z-index:39;top:100%;left:-16px;width:290px;height:18px}
 .services-menu__button{position:relative;display:inline-flex;align-items:center;padding:0;border:0;background:transparent;color:inherit;font:inherit;font-weight:inherit;line-height:inherit;cursor:default}
 .services-menu__button:before{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .2s}
 .services-menu:hover .services-menu__button:before,.services-menu:focus-within .services-menu__button:before,.services-menu.is-active .services-menu__button:before{transform:scaleX(1)}
