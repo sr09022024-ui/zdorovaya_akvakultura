@@ -99,6 +99,73 @@
     if (count) count.textContent = '11 материалов';
   }
 
+  const articleConnections = {
+    '/blog/algoritm-deystviy-pri-othode-ryby/': [
+      ['/konsultaciya-ihtiopatologa/', 'Консультация ихтиопатолога — оценить ситуацию при росте отхода'],
+      ['/audit-biobezopasnosti-rybovodnogo-hozyaystva/', 'Аудит биобезопасности рыбоводного хозяйства'],
+      ['/blog/kogda-bit-trevogu-pri-othode-ryby/', 'Как правильно отбирать пробы при увеличении отхода рыбы']
+    ],
+    '/blog/antibiotiki-v-rybovodstve/': [
+      ['/konsultaciya-ihtiopatologa/', 'Консультация ихтиопатолога по диагностике и лечению'],
+      ['/soprovozhdenie-rybovodnogo-hozyaystva/', 'Сопровождение хозяйства: профилактика вместо постоянного лечения'],
+      ['/blog/autovakciny-dlya-ryb/', 'Аутовакцины для рыб: когда индивидуальный подход оправдан']
+    ],
+    '/blog/autovakciny-dlya-ryb/': [
+      ['/konsultaciya-ihtiopatologa/', 'Консультация ихтиопатолога по диагностике и профилактике'],
+      ['/audit-biobezopasnosti-rybovodnogo-hozyaystva/', 'Аудит биобезопасности перед планированием профилактики'],
+      ['/blog/antibiotiki-v-rybovodstve/', 'Антибиотики в рыбоводстве не заменяют профилактику']
+    ],
+    '/blog/dezkovrik-v-rybovodnom-hozyaystve/': [
+      ['/audit-biobezopasnosti-rybovodnogo-hozyaystva/', 'Аудит биобезопасности рыбоводного хозяйства'],
+      ['/soprovozhdenie-rybovodnogo-hozyaystva/', 'Сопровождение хозяйства и контроль санитарных мероприятий'],
+      ['/blog/iodinol-obrabotka-ikry-foreli/', 'Йодинол для обработки икры форели: что показал эксперимент']
+    ],
+    '/blog/ihnv-genogruppy-e-i-u/': [
+      ['/audit-biobezopasnosti-rybovodnogo-hozyaystva/', 'Аудит биобезопасности при рисках вирусных инфекций'],
+      ['/konsultaciya-ihtiopatologa/', 'Консультация ихтиопатолога по диагностике вирусных болезней'],
+      ['/blog/ihnv-v-rossii-molekulyarnaya-epidemiologiya/', 'IHNV в России: что показал генетический анализ изолятов форели']
+    ],
+    '/blog/ihnv-v-rossii-molekulyarnaya-epidemiologiya/': [
+      ['/audit-biobezopasnosti-rybovodnogo-hozyaystva/', 'Аудит биобезопасности при рисках заноса вируса'],
+      ['/soprovozhdenie-rybovodnogo-hozyaystva/', 'Сопровождение хозяйства: контроль критичных точек'],
+      ['/blog/ihnv-genogruppy-e-i-u/', 'IHNV у радужной форели: что показал эксперимент с геногруппами E и U']
+    ],
+    '/blog/iodinol-obrabotka-ikry-foreli/': [
+      ['/audit-biobezopasnosti-rybovodnogo-hozyaystva/', 'Аудит биобезопасности инкубационного участка'],
+      ['/soprovozhdenie-rybovodnogo-hozyaystva/', 'Сопровождение хозяйства и контроль профилактических мер'],
+      ['/blog/dezkovrik-v-rybovodnom-hozyaystve/', 'Дезковрик в рыбоводном хозяйстве: как превратить раствор в реальный барьер']
+    ],
+    '/blog/kogda-bit-trevogu-pri-othode-ryby/': [
+      ['/konsultaciya-ihtiopatologa/', 'Консультация ихтиопатолога при росте отхода'],
+      ['/audit-biobezopasnosti-rybovodnogo-hozyaystva/', 'Аудит биобезопасности и диагностика рисков'],
+      ['/blog/algoritm-deystviy-pri-othode-ryby/', 'Растёт отход рыбы: алгоритм первых действий на хозяйстве']
+    ],
+    '/blog/mikotoksiny-v-korme-dlya-ryby/': [
+      ['/konsultaciya-ihtiopatologa/', 'Консультация ихтиопатолога по оценке причин проблем'],
+      ['/soprovozhdenie-rybovodnogo-hozyaystva/', 'Сопровождение хозяйства: регулярный контроль показателей'],
+      ['/blog/pochemu-analizy-ryby-raznye/', 'Почему анализы рыбы из одного бассейна дают разные результаты']
+    ],
+    '/blog/pochemu-analizy-ryby-raznye/': [
+      ['/konsultaciya-ihtiopatologa/', 'Консультация ихтиопатолога по организации диагностики'],
+      ['/soprovozhdenie-rybovodnogo-hozyaystva/', 'Сопровождение хозяйства и контроль данных'],
+      ['/blog/kogda-bit-trevogu-pri-othode-ryby/', 'Когда бить тревогу при увеличении отхода рыбы и как правильно отбирать пробы']
+    ]
+  };
+
+  const connectionLinks = articleConnections[window.location.pathname];
+  const articleAuthor = document.querySelector('article.article-content .article-author');
+  if (connectionLinks && articleAuthor && !document.querySelector('.article-links')) {
+    const panel = document.createElement('aside');
+    panel.className = 'article-links';
+    panel.setAttribute('aria-labelledby', 'article-links-title');
+    panel.innerHTML = `<strong id="article-links-title">По теме</strong><ul>${connectionLinks.map(([href, text]) => `<li><a href="${href}">${text}</a></li>`).join('')}</ul>`;
+    articleAuthor.before(panel);
+
+    const style = document.createElement('style');
+    style.textContent = '.article-links{margin:38px 0 40px;padding:22px 24px;border:1px solid #dce7ed;border-radius:14px;background:#f7fbfc}.article-links strong{display:block;color:#0b3b5b;font-size:18px;line-height:1.3}.article-links ul{display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none}.article-links li{position:relative;padding-left:18px;color:#38536a}.article-links li:before{content:"→";position:absolute;left:0;color:#65a33f;font-weight:800}.article-links a{color:#0b3b5b;font-weight:700;text-decoration:underline;text-decoration-color:#9fc5d2;text-decoration-thickness:1px;text-underline-offset:3px}.article-links a:hover{color:#356f42;text-decoration-color:currentColor}@media(max-width:620px){.article-links{margin:30px 0 34px;padding:19px 20px}.article-links strong{font-size:17px}}';
+    document.head.append(style);
+  }
+
   const tariffLinks = [
     ['/tarif-standart/', 'Подробнее о тарифе «Стандарт»'],
     ['/tarif-optimalnyj/', 'Подробнее о тарифе «Оптимальный»'],
