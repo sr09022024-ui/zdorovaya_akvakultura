@@ -1,4 +1,28 @@
 (() => {
+  document.querySelectorAll('.navlinks').forEach((navigation) => {
+    const reviewsLink = navigation.querySelector('a[href="/#reviews"]');
+    const faqLink = navigation.querySelector('a[href="/#faq"]');
+    const blogLink = navigation.querySelector('a[href="/blog/"]');
+
+    reviewsLink?.remove();
+    faqLink?.remove();
+
+    if (!navigation.querySelector('a[href="/ob-eksperte/"]')) {
+      const expertLink = document.createElement('a');
+      expertLink.href = '/ob-eksperte/';
+      expertLink.textContent = 'Об эксперте';
+      if (window.location.pathname === '/ob-eksperte/') {
+        expertLink.classList.add('active');
+        expertLink.setAttribute('aria-current', 'page');
+      }
+      if (blogLink) {
+        navigation.insertBefore(expertLink, blogLink);
+      } else {
+        navigation.append(expertLink);
+      }
+    }
+  });
+
   const navigationMenus = [
     {
       selector: '.navlinks > a[href="/uslugi-ihtiopatologa/"]',
